@@ -16,7 +16,7 @@ const buttonStyles = cva(
   {
     variants: {
       variant: {
-        solid: "bg-blue-500 text-white hover:bg-blue-600",
+        solids: "bg-blue-500 text-white hover:bg-blue-600",
         outline: "border border-blue-500 text-blue-500 hover:bg-blue-50",
       },
       size: {
@@ -25,12 +25,12 @@ const buttonStyles = cva(
         lg: "px-8 py-4 text-lg",
       },
       colorscheme: {
-        primary: "text-white",
+        primary: "text-white underline",
       },
     },
     compoundVariants: [
       {
-        variant: "solid",
+        variant: "solids",
         colorscheme: "primary",
         class: "bg-blue-500 text-white hover:bg-blue-600",
       },
@@ -41,7 +41,7 @@ const buttonStyles = cva(
       },
     ],
     defaultVariants: {
-      variant: "solid",
+      variant: "solids",
       size: "md",
       colorscheme: "primary",
     },
