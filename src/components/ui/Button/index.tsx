@@ -16,7 +16,7 @@ const buttonStyles = cva(
   {
     variants: {
       variant: {
-        solids: "bg-blue-500 text-white hover:bg-blue-600",
+        solid: "bg-blue-500 text-white hover:bg-blue-600",
         outline: "border border-blue-500 text-blue-500 hover:bg-blue-50",
       },
       size: {
@@ -30,7 +30,7 @@ const buttonStyles = cva(
     },
     compoundVariants: [
       {
-        variant: "solids",
+        variant: "solid",
         colorscheme: "primary",
         class: "bg-blue-500 text-white hover:bg-blue-600",
       },
@@ -41,7 +41,7 @@ const buttonStyles = cva(
       },
     ],
     defaultVariants: {
-      variant: "solids",
+      variant: "solid",
       size: "md",
       colorscheme: "primary",
     },
