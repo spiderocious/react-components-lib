@@ -317,7 +317,7 @@ export const Stepper = forwardRef<HTMLDivElement, StepperProps>(
       );
     };
 
-    const getConnectorHeight = (stepIndex: number) => {
+    const getConnectorHeight = (_stepIndex: number) => {
       if (orientation === "horizontal") {
         // For horizontal, calculate width to next step
         const stepWidth = 100 / (steps.length - 1);
