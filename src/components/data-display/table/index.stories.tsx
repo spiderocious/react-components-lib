@@ -872,3 +872,354 @@ export const InteractiveDemo: Story = {
     );
   },
 };
+
+export const TableWithLoadingConfig: Story = {
+  args: {
+    data: [],
+    columns: userColumns,
+    title: "Custom Loading Configuration",
+    loading: true,
+    loadingConfig: {
+      rows: 12,
+      showHeader: true,
+      showPagination: true,
+      variant: "skeleton",
+    },
+    toolbarConfig: {
+      showGlobalFilter: true,
+      showColumnToggle: false,
+      showExport: false,
+    },
+  },
+};
+
+export const TableWithEmptyConfig: Story = {
+  args: {
+    data: [],
+    columns: transactionColumns,
+    title: "Custom Empty State Configuration",
+    loading: false,
+    emptyConfig: {
+      title: "No transactions found",
+      description:
+        "You haven't made any transactions yet. Connect your bank account or credit card to start tracking your finances.",
+      icon: (
+        <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+          <svg
+            className="w-8 h-8 text-blue-600"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"
+            />
+          </svg>
+        </div>
+      ),
+      action: (
+        <div className="flex gap-3">
+          <button className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
+            Connect Bank Account
+          </button>
+          <button className="px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-50">
+            Add Manual Transaction
+          </button>
+        </div>
+      ),
+    },
+  },
+};
+
+export const TableWithToolbarConfig: Story = {
+  args: {
+    data: MOCK_PRODUCTS,
+    columns: productColumns as any,
+    title: "Advanced Toolbar Configuration",
+    enableSorting: true,
+    enableGlobalFilter: true,
+    enableSelection: true,
+    enablePagination: true,
+    pageSize: 5,
+    toolbarConfig: {
+      showGlobalFilter: true,
+      showColumnToggle: true,
+      showExport: true,
+      showBulkActions: true,
+      customActions: (
+        <div className="flex items-center gap-2">
+          <button className="px-3 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 text-sm flex items-center gap-2">
+            <span>📦</span>
+            Import Products
+          </button>
+          <button className="px-3 py-2 bg-purple-600 text-white rounded-md hover:bg-purple-700 text-sm flex items-center gap-2">
+            <span>📊</span>
+            Analytics
+          </button>
+          <select className="px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <option>All Categories</option>
+            <option>Electronics</option>
+            <option>Accessories</option>
+            <option>Office</option>
+          </select>
+        </div>
+      ),
+      bulkActions: [
+        {
+          id: "updatePrice",
+          label: "Update Prices",
+          icon: "💰",
+          onClick: (selectedRows) => {
+            console.log("Updating prices for:", selectedRows);
+          },
+        },
+        {
+          id: "changeCategory",
+          label: "Change Category",
+          icon: "📂",
+          onClick: (selectedRows) => {
+            console.log("Changing category for:", selectedRows);
+          },
+        },
+        {
+          id: "markOutOfStock",
+          label: "Mark Out of Stock",
+          icon: "❌",
+          variant: "warning",
+          onClick: (selectedRows) => {
+            console.log("Marking out of stock:", selectedRows);
+          },
+        },
+        {
+          id: "deleteProducts",
+          label: "Delete Products",
+          icon: "🗑️",
+          variant: "danger",
+          onClick: (selectedRows) => {
+            console.log("Deleting products:", selectedRows);
+          },
+        },
+      ],
+    },
+  },
+};
+
+export const TableWithExternalFilter: Story = {
+  render: () => {
+    const [statusFilter, setStatusFilter] = React.useState<string>("all");
+    const [roleFilter, setRoleFilter] = React.useState<string>("all");
+    const [departmentFilter, setDepartmentFilter] =
+      React.useState<string>("all");
+
+    const filteredData = React.useMemo(() => {
+      return MOCK_USERS.filter((user) => {
+        const statusMatch =
+          statusFilter === "all" || user.status === statusFilter;
+        const roleMatch = roleFilter === "all" || user.role === roleFilter;
+        const departmentMatch =
+          departmentFilter === "all" || user.department === departmentFilter;
+        return statusMatch && roleMatch && departmentMatch;
+      });
+    }, [statusFilter, roleFilter, departmentFilter]);
+
+    return (
+      <div className="space-y-4">
+        {/* External Filter Controls */}
+        <div className="bg-gray-50 p-4 rounded-lg border">
+          <h3 className="text-sm font-medium text-gray-900 mb-3">
+            External Filters
+          </h3>
+          <div className="flex flex-wrap gap-4">
+            <div>
+              <label className="block text-xs font-medium text-gray-700 mb-1">
+                Status
+              </label>
+              <select
+                value={statusFilter}
+                onChange={(e) => setStatusFilter(e.target.value)}
+                className="px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
+                <option value="all">All Statuses</option>
+                <option value="active">Active</option>
+                <option value="inactive">Inactive</option>
+                <option value="pending">Pending</option>
+              </select>
+            </div>
+
+            <div>
+              <label className="block text-xs font-medium text-gray-700 mb-1">
+                Role
+              </label>
+              <select
+                value={roleFilter}
+                onChange={(e) => setRoleFilter(e.target.value)}
+                className="px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
+                <option value="all">All Roles</option>
+                <option value="admin">Admin</option>
+                <option value="user">User</option>
+                <option value="moderator">Moderator</option>
+              </select>
+            </div>
+
+            <div>
+              <label className="block text-xs font-medium text-gray-700 mb-1">
+                Department
+              </label>
+              <select
+                value={departmentFilter}
+                onChange={(e) => setDepartmentFilter(e.target.value)}
+                className="px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
+                <option value="all">All Departments</option>
+                <option value="Engineering">Engineering</option>
+                <option value="Marketing">Marketing</option>
+                <option value="Sales">Sales</option>
+                <option value="Support">Support</option>
+                <option value="Design">Design</option>
+                <option value="HR">HR</option>
+              </select>
+            </div>
+
+            <div className="flex items-end">
+              <button
+                onClick={() => {
+                  setStatusFilter("all");
+                  setRoleFilter("all");
+                  setDepartmentFilter("all");
+                }}
+                className="px-3 py-2 text-sm text-gray-600 hover:text-gray-800 underline"
+              >
+                Clear Filters
+              </button>
+            </div>
+          </div>
+
+          <div className="mt-2 text-xs text-gray-600">
+            Showing {filteredData.length} of {MOCK_USERS.length} users
+          </div>
+        </div>
+
+        <DataTable
+          data={filteredData}
+          columns={userColumns}
+          title="Users with External Filtering"
+          enableSorting={true}
+          enableGlobalFilter={true}
+          enablePagination={true}
+          pageSize={10}
+          manualFiltering={true} // Disable internal filtering since we're handling it externally
+          toolbarConfig={{
+            showGlobalFilter: true,
+            showColumnToggle: true,
+            showExport: true,
+          }}
+        />
+      </div>
+    );
+  },
+};
+
+export const TableWithExternalSort: Story = {
+  render: () => {
+    const [sortConfig, setSortConfig] = React.useState<{
+      key: keyof User | null;
+      direction: "asc" | "desc";
+    }>({ key: null, direction: "asc" });
+
+    const sortedData = React.useMemo(() => {
+      if (!sortConfig.key) return MOCK_USERS;
+
+      return [...MOCK_USERS].sort((a, b) => {
+        const aVal = a[sortConfig.key!];
+        const bVal = b[sortConfig.key!];
+        if (!aVal || !bVal) return 0; // Handle null/undefined values gracefully
+        if (aVal < bVal) return sortConfig.direction === "asc" ? -1 : 1;
+        if (aVal > bVal) return sortConfig.direction === "asc" ? 1 : -1;
+        return 0;
+      });
+    }, [sortConfig]);
+
+    const handleSort = (key: keyof User) => {
+      setSortConfig((prev) => ({
+        key,
+        direction:
+          prev.key === key && prev.direction === "asc" ? "desc" : "asc",
+      }));
+    };
+
+    return (
+      <div className="space-y-4">
+        {/* External Sort Controls */}
+        <div className="bg-gray-50 p-4 rounded-lg border">
+          <h3 className="text-sm font-medium text-gray-900 mb-3">
+            External Sort Controls
+          </h3>
+          <div className="flex flex-wrap gap-2">
+            {[
+              { key: "name" as keyof User, label: "Name" },
+              { key: "email" as keyof User, label: "Email" },
+              { key: "role" as keyof User, label: "Role" },
+              { key: "department" as keyof User, label: "Department" },
+              { key: "salary" as keyof User, label: "Salary" },
+              { key: "joinDate" as keyof User, label: "Join Date" },
+            ].map(({ key, label }) => (
+              <button
+                key={key}
+                onClick={() => handleSort(key)}
+                className={`px-3 py-2 text-sm rounded-md border transition-colors ${
+                  sortConfig.key === key
+                    ? "bg-blue-600 text-white border-blue-600"
+                    : "bg-white text-gray-700 border-gray-300 hover:bg-gray-50"
+                }`}
+              >
+                {label}
+                {sortConfig.key === key && (
+                  <span className="ml-1">
+                    {sortConfig.direction === "asc" ? "↑" : "↓"}
+                  </span>
+                )}
+              </button>
+            ))}
+
+            <button
+              onClick={() => setSortConfig({ key: null, direction: "asc" })}
+              className="px-3 py-2 text-sm text-gray-600 hover:text-gray-800 underline"
+            >
+              Clear Sort
+            </button>
+          </div>
+
+          <div className="mt-2 text-xs text-gray-600">
+            {sortConfig.key ? (
+              <>
+                Sorted by {sortConfig.key} ({sortConfig.direction}ending)
+              </>
+            ) : (
+              <>No sorting applied</>
+            )}
+          </div>
+        </div>
+
+        <DataTable
+          data={sortedData}
+          columns={userColumns}
+          title="Users with External Sorting"
+          enableSorting={false} // Disable internal sorting since we're handling it externally
+          manualSorting={true}
+          enableGlobalFilter={true}
+          enablePagination={true}
+          pageSize={10}
+          toolbarConfig={{
+            showGlobalFilter: true,
+            showColumnToggle: true,
+            showExport: true,
+          }}
+        />
+      </div>
+    );
+  },
+};

@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from "react";
 import { cn } from "../../../utils";
-import { Table, useTable } from "./";
+import { Table, useTable } from ".";
 import type {
   EmptyStateConfig,
   ExportOptions,
@@ -17,7 +17,6 @@ export const TableSkeleton: React.FC<LoadingConfig & { columns: number }> = ({
   columns,
   showHeader = true,
   showPagination = false,
-  variant = "skeleton",
 }) => {
   const SkeletonBar = ({ className }: { className?: string }) => (
     <div className={cn("animate-pulse bg-gray-200 rounded", className)} />

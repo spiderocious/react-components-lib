@@ -1,6 +1,6 @@
 import { cva } from "class-variance-authority";
 import { forwardRef, useEffect, useState, type ComponentProps } from "react";
-import { cn } from "../../../utils";
+import { cn } from "../../utils";
 import {
   type ActionModalOptions,
   type ButtonType,

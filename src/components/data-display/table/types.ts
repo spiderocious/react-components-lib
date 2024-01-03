@@ -87,7 +87,7 @@ export interface TableState {
 
 export interface TableOptions<TData = any> {
   data: TData[];
-  columns: ColumnDef<TData>[];
+  columns: ColumnDef<TData>[] | any[];
 
   // Features
   enableSorting?: boolean;
