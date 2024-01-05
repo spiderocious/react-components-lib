@@ -9,7 +9,15 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "test": "vitest",
+    "test:watch": "vitest --watch",
+    "test:ui": "vitest --ui",
+    "test:run": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "test:coverage:ui": "vitest --ui --coverage",
+    "test:storybook": "test-storybook",
+    "type-check": "tsc --noEmit"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",
@@ -26,6 +34,7 @@
     "@storybook/addon-onboarding": "^9.0.17",
     "@storybook/addon-vitest": "^9.0.17",
     "@storybook/react-vite": "^9.0.17",
+    "@storybook/test-runner": "^0.23.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^14.6.1",
