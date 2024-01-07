@@ -5,8 +5,6 @@ import { formatTime, parseValue, toISOString } from "./utils";
 
 export const TimePicker: React.FC<TimePickerProps> = ({
   selectedValue,
-  min,
-  max,
   onSelect,
   disabled = false,
   placeholder = "Select time",
@@ -54,24 +52,6 @@ export const TimePicker: React.FC<TimePickerProps> = ({
   const handleTimeChange = (newTime: Date) => {
     setSelectedTime(newTime);
     onSelect?.(toISOString(newTime));
-  };
-
-  const handleHourChange = (hour: number) => {
-    const newTime = new Date(selectedTime);
-    newTime.setHours(hour);
-    handleTimeChange(newTime);
-  };
-
-  const handleMinuteChange = (minute: number) => {
-    const newTime = new Date(selectedTime);
-    newTime.setMinutes(minute);
-    handleTimeChange(newTime);
-  };
-
-  const handleSecondChange = (second: number) => {
-    const newTime = new Date(selectedTime);
-    newTime.setSeconds(second);
-    handleTimeChange(newTime);
   };
 
   const handleAmPmChange = (isPM: boolean) => {
@@ -190,9 +170,7 @@ export const TimePicker: React.FC<TimePickerProps> = ({
   const TimeColumn = ({
     value,
     onChange,
-    max,
     label,
-    step = 1,
   }: {
     value: number;
     onChange: (value: number, direction: "up" | "down") => void;

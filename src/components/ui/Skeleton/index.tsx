@@ -140,7 +140,7 @@ export const SkeletonButton = forwardRef<
 export const SkeletonCard = forwardRef<
   HTMLDivElement,
   Omit<SkeletonProps, "count">
->(({ className, ...props }, ref) => (
+>(({ className }, ref) => (
   <div ref={ref} className={cn("p-4 border rounded-lg", className)}>
     <div className="space-y-3">
       <SkeletonCircle width="3rem" />

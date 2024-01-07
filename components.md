@@ -1007,7 +1007,7 @@ Comprehensive modal system with multiple variants and interaction patterns.
 #### Setup
 
 ```tsx
-import { ModalProvider, useModal } from "simple-ui";
+import { ModalProvider, useModal } from "cockroach-ui";
 
 // Wrap your app
 <ModalProvider>

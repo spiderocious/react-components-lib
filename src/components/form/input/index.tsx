@@ -133,7 +133,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     ref
   ) => {
     const [internalError, setInternalError] = useState<string>("");
-    const [isFocused, setIsFocused] = useState(false);
+    const [_isFocused, setIsFocused] = useState(false);
 
     // Determine if we should show error state
     const hasError = Boolean(errorMessage || internalError);

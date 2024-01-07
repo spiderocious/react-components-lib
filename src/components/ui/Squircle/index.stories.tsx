@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Squircle } from ".";
 
 const meta: Meta<typeof Squircle> = {
-  title: "Components/Squircle",
+  title: "Components/squircle",
   component: Squircle,
   tags: ["autodocs"],
   argTypes: {

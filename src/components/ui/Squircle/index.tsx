@@ -47,4 +47,4 @@ export const Squircle = forwardRef<HTMLDivElement, SquircleProps>(
   }
 );
 
-Squircle.displayName = "Squircle";
+Squircle.displayName = "squircle";

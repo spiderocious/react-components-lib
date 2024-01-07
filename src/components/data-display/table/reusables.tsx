@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from "react";
-import { cn } from "../../../utils";
 import { Table, useTable } from ".";
+import { cn } from "../../../utils";
 import type {
   EmptyStateConfig,
   ExportOptions,
@@ -292,8 +292,6 @@ export const TableToolbar: React.FC<{
     instance.getState().globalFilter
   );
   const [showColumnToggle, setShowColumnToggle] = useState(false);
-
-  const state = instance.getState();
   const selectedRows = instance
     .getRowModel()
     .rows.filter((row) => row.getIsSelected());

@@ -29,12 +29,12 @@ Simple UI is a modern React component library built with TypeScript, Tailwind CS
 
 ```tsx
 // Named imports from main package
-import { Button, Badge, Chip, Input, Modal } from "simple-ui";
+import { Button, Badge, Chip, Input, Modal } from "cockroach-ui";
 
 // Category-specific imports (if available)
-import { Button } from "simple-ui/ui";
-import { Input } from "simple-ui/form";
-import { Alert } from "simple-ui/feedback";
+import { Button } from "cockroach-ui/ui";
+import { Input } from "cockroach-ui/form";
+import { Alert } from "cockroach-ui/feedback";
 ```
 
 ### Component Organization

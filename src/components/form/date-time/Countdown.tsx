@@ -29,7 +29,7 @@ export const Countdown: React.FC<CountdownProps> = ({
     seconds: 0,
     total: 0,
   });
-  const [isStarted, setIsStarted] = useState(false);
+  const [_isStarted, setIsStarted] = useState(false);
   const [isCompleted, setIsCompleted] = useState(false);
   const intervalRef = useRef<any>(null);
   const onEndCalledRef = useRef(false);

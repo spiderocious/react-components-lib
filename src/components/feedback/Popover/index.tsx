@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { cva } from "class-variance-authority";
 import { forwardRef, useEffect, useRef, useState, type ReactNode } from "react";
 import { cn } from "../../../utils";
@@ -172,7 +173,7 @@ export const Popover = forwardRef<HTMLDivElement, PopoverProps>(
 
     const triggerRef = useRef<HTMLDivElement>(null);
     const contentRef = useRef<HTMLDivElement>(null);
-    const hoverTimeoutRef = useRef<number | null>(null);
+    const hoverTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
     const setOpen = (newOpen: boolean) => {
       if (!isControlled) {

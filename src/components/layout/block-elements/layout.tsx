@@ -1,5 +1,5 @@
 import React, { forwardRef, useEffect, useState } from "react";
-import { cn } from "../../utils";
+import { cn } from "../../../utils";
 import {
   DEFAULT_BREAKPOINTS,
   type ColumnProps,

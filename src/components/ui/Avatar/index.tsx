@@ -6,7 +6,7 @@ import {
   type ReactNode,
 } from "react";
 import { cn } from "../../../utils";
-import { Squircle } from "../Squircle";
+import { Squircle } from "../squircle";
 
 const avatarStyles = cva(
   [
