@@ -1,6 +1,6 @@
-import '@testing-library/jest-dom';
-import { cleanup } from '@testing-library/react';
-import { afterEach, beforeEach } from 'vitest';
+import "@testing-library/jest-dom";
+import { cleanup } from "@testing-library/react";
+import { afterEach, beforeEach } from "vitest";
 
 // Clean up after each test case (e.g. clearing jsdom)
 afterEach(() => {
@@ -24,7 +24,7 @@ afterEach(() => {
 };
 
 // Mock window.matchMedia
-Object.defineProperty(window, 'matchMedia', {
+Object.defineProperty(window, "matchMedia", {
   writable: true,
   value: (query: string) => ({
     matches: false,
@@ -39,7 +39,7 @@ Object.defineProperty(window, 'matchMedia', {
 });
 
 // Mock window.scrollTo
-Object.defineProperty(window, 'scrollTo', {
+Object.defineProperty(window, "scrollTo", {
   writable: true,
   value: () => {},
 });
@@ -51,8 +51,8 @@ const originalWarn = console.warn;
 beforeEach(() => {
   console.error = (...args: any[]) => {
     if (
-      typeof args[0] === 'string' &&
-      args[0].includes('Warning: ReactDOM.render is deprecated')
+      typeof args[0] === "string" &&
+      args[0].includes("Warning: ReactDOM.render is deprecated")
     ) {
       return;
     }
@@ -61,9 +61,9 @@ beforeEach(() => {
 
   console.warn = (...args: any[]) => {
     if (
-      typeof args[0] === 'string' &&
-      (args[0].includes('componentWillMount') ||
-        args[0].includes('componentWillReceiveProps'))
+      typeof args[0] === "string" &&
+      (args[0].includes("componentWillMount") ||
+        args[0].includes("componentWillReceiveProps"))
     ) {
       return;
     }
