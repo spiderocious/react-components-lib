@@ -11,6 +11,7 @@ const buttonStyles = cva(
     "text-sm",
     "font-medium",
     "disabled:cursor-not-allowed",
+    "text-left",
   ],
   {
     variants: {
