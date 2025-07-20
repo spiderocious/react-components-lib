@@ -1,7 +1,63 @@
-import type { ComponentProps } from "react";
+import { cva, type VariantProps } from "class-variance-authority";
+import { forwardRef, type ComponentProps } from "react";
+import { cn } from "../../utils";
 
-export type ButtonProps = ComponentProps<"button">;
+const buttonStyles = cva(
+  [
+    "w-full",
+    "rounded-md",
+    "px-4",
+    "py-2",
+    "text-sm",
+    "font-medium",
+    "disabled:cursor-not-allowed",
+  ],
+  {
+    variants: {
+      variant: {
+        solid: "bg-blue-500 text-white hover:bg-blue-600",
+        outline: "border border-blue-500 text-blue-500 hover:bg-blue-50",
+      },
+      size: {
+        sm: "px-4 py-2 text-sm",
+        md: "px-6 py-3 text-base",
+        lg: "px-8 py-4 text-lg",
+      },
+      colorscheme: {
+        primary: "text-white",
+      },
+    },
+    compoundVariants: [
+      {
+        variant: "solid",
+        colorscheme: "primary",
+        class: "bg-blue-500 text-white hover:bg-blue-600",
+      },
+      {
+        variant: "outline",
+        colorscheme: "primary",
+        class: "border border-blue-500 text-blue-500 hover:bg-blue-50",
+      },
+    ],
+    defaultVariants: {
+      variant: "solid",
+      size: "md",
+      colorscheme: "primary",
+    },
+  }
+);
 
-export const Button = ({ ...props }: ButtonProps) => {
-  return <button className="text-red-500" {...props} />;
-};
+export type ButtonProps = ComponentProps<"button"> &
+  VariantProps<typeof buttonStyles>;
+
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ variant, size, colorscheme, className, ...props }, ref) => {
+    return (
+      <button
+        ref={ref}
+        className={cn(buttonStyles({ variant, size, colorscheme, className }))}
+        {...props}
+      />
+    );
+  }
+);
