@@ -15,15 +15,15 @@ const config: StorybookConfig = {
     name: "@storybook/react-vite",
     options: {},
   },
-  viteFinal: async (config) => {
-    config.plugins?.push(
-      /** @see https://github.com/aleclarson/vite-tsconfig-paths */
-      tsconfigPaths({
-        projects: [path.resolve(path.dirname(__dirname), "tsconfig.json")],
-      })
-    );
+  // viteFinal: async (config) => {
+  //   config.plugins?.push(
+  //     /** @see https://github.com/aleclarson/vite-tsconfig-paths */
+  //     tsconfigPaths({
+  //       projects: [path.resolve(path.dirname(__dirname), "tsconfig.json")],
+  //     })
+  //   );
 
-    return config;
-  },
+  //   return config;
+  // },
 };
 export default config;
