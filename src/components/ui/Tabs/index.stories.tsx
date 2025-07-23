@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Tabs } from ".";
-import { Badge } from "../Badge";
-import { Chip } from "../Chip";
+import { Badge } from "../badge";
+import { Chip } from "../chip";
 
 const meta: Meta<typeof Tabs> = {
   title: "Components/Tabs",
