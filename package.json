@@ -20,7 +20,7 @@
     "type": "git",
     "url": ""
   },
-  "author": "feranmi",
+  "author": "devferanmi",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
